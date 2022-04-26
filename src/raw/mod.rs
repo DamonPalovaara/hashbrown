@@ -146,7 +146,7 @@ fn h1(hash: u64) -> usize {
 fn h2(hash: u64) -> u8 {
     // Grab the top 7 bits of the hash. While the hash is normally a full 64-bit
     // value, some hash functions (such as FxHash) produce a usize result
-    // instead, which means that the top 32 bits are 0 on 32-bit platforms.
+    // instead, which means that the top 32 bits are 0 on 64-bit platforms.
     let hash_len = usize::min(mem::size_of::<usize>(), mem::size_of::<u64>());
     let top7 = hash >> (hash_len * 8 - 7);
     (top7 & 0x7f) as u8 // truncation
